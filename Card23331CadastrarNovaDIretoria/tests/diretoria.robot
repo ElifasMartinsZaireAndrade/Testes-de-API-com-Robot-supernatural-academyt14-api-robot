@@ -52,7 +52,6 @@ CT03: Cadastrar diretoria com acentos
 CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (2 caractere) 
     [Tags]     POST    negative    
     ${letra_aleatoria}=          Generate Random String    1    [UPPER]
-    ${letra_maiscurta}=           Set Variable              ${letra_aleatoria}
     ${body}=                     Create Dictionary         name=${letra_aleatoria}
     ${resp_erro}=                Cadastrar nova diretoria    ${letra_aleatoria}   
     Status Should Be             400                       ${resp_erro}
@@ -167,3 +166,17 @@ CT14: Não permitir editar o nome para vazio
     ${resp_edicao}              Editar diretoria          ${id}    ${EMPTY}    
     Status Should Be             400                       ${resp_edicao}
     Should Contain               ${resp_edicao.json()}[error][0]     ${MSG_ERRO_OBRIGATORIO}
+
+
+# ==================================================================================================
+#            --- Listar diretoria (GET) ---
+# ==================================================================================================
+
+CT01: Consultar a lista de diretorias
+    [Tags]    GET    smoke
+    ${resp}    Consultar diretorias
+    Status Should Be     200     ${resp}
+    ${diretorias}     Set Variable     ${resp.json()}
+    Should Not Be Empty     ${diretorias}  
+    Dictionary Should Contain Key     ${diretorias}[0]     boardName
+    Dictionary Should Contain Key     ${diretorias}[0]     status

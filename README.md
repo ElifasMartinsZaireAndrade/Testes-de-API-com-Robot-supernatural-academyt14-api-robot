@@ -14,8 +14,8 @@ Python 3: Linguagem utilizada no projeto.
 Primeiro, clone o repositório e instale as dependências necessárias.
 
 ```bash
-git clone https://coderefinery.github.io/github-without-command-line/doi/
-cd [nome-do-repositorio]
+git clone https://github.com/ElifasMartinsZaireAndrade/Robot-Framework.git
+cd Robot-Framework
 pip install robotframework robotframework-requests
 ```
 
