@@ -15,7 +15,7 @@ Primeiro, clone o repositório e instale as dependências necessárias.
 
 ```bash
 git clone https://github.com/ElifasMartinsZaireAndrade/Robot-Framework.git
-cd [nome-do-repositorio]
+cd Robot-Framework
 pip install robotframework robotframework-requests
 ```
 
