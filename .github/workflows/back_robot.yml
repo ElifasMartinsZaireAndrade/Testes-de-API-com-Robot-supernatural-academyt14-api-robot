@@ -24,6 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install robotframework
           pip install requests
+          pip install robotframework-requests
 
       - name: Debug - List all files
         run: |
