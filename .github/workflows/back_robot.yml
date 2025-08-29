@@ -33,7 +33,7 @@ jobs:
       - name: Run Robot Framework Tests
         run: |
           robot -d logs tests/
-        working-directory: ${{ github.workspace }}/Testes-de-API-com-Robot-supernatural-academyt14-api-robot
+        working-directory: ${{ github.workspace }}/Testes-de-API-com-Robot-supernatural-academyt14-api-robot/QaCoders
 
       - name: Upload Robot Framework Results
         uses: actions/upload-artifact@v4
