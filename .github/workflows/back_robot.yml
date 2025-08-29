@@ -32,6 +32,7 @@ jobs:
 
       - name: Run Robot Framework Tests
         run: |
+          cd QaCoders
           robot -d logs tests/
         working-directory: ${{ github.workspace }}/Testes-de-API-com-Robot-supernatural-academyt14-api-robot/QaCoders
 
