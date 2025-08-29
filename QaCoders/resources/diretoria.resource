@@ -1,5 +1,3 @@
-# File: seu_projeto/resources/diretoria.resource
-
 *** Settings ***
 Library     RequestsLibrary
 Library     Collections
@@ -9,7 +7,7 @@ Resource    auth.resource
 
 *** Keywords ***
 Cadastrar nova diretoria
-     [Arguments]     ${nome_diretoria}   
+    [Arguments]     ${nome_diretoria}   
     [Documentation]    Envia uma requisição POST para criar uma nova diretoria.
     ${body}=       Create Dictionary    boardName=${nome_diretoria}
     ${response}=    POST On Session
@@ -17,7 +15,7 @@ Cadastrar nova diretoria
     ...             url=/board?token=${AUTH_TOKEN}
     ...             json=${body}
     ...             expected_status=any
-    RETURN          ${response}
+    RETURN    ${response}  
 
 
 Editar diretoria

@@ -1,7 +1,7 @@
 *** Settings ***
 Library           RequestsLibrary
 Library           Collections
-Resource          ../resources/config.resource
+Resource          config.resource
 
 *** Keywords ***
 Realizar Login e Salvar Token

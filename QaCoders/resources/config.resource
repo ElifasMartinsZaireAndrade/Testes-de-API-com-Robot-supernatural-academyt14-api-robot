@@ -1,5 +1,5 @@
 *** Variables ***
-${BASE_URL}                  https://api-supernatural.qacoders.dev.br/api  
+${BASE_URL}                  https://api-shogun.qacoders.dev.br/api  
 ${ADMIN_EMAIL}               sysadmin@qacoders.com
 ${ADMIN_PASSWORD}            1234@Test
 ${CHARS_COM_ACENTOS}         abcdefghijklmnopqrstuvwxyzáàâãéèêíïóôõöúç
