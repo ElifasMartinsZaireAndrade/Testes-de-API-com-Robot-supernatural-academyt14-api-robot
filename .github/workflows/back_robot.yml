@@ -25,6 +25,11 @@ jobs:
           pip install robotframework
           pip install requests
 
+      - name: Debug - List all files
+        run: |
+          pwd
+          ls -R
+
       - name: Run Robot Framework Tests
         run: |
           robot -d logs tests/
