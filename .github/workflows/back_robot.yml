@@ -1,4 +1,4 @@
-name: Robot Framework Tests
+name: Robot Framework API Tests and Deploy
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
+  # Job 1: Executar os testes de API
   run-robot-tests:
     runs-on: ubuntu-latest
     
@@ -17,7 +18,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          # É uma boa prática fixar a versão para garantir consistência
+          python-version: '3.11' 
 
       - name: Install Dependencies
         run: |
@@ -26,23 +28,50 @@ jobs:
           pip install requests
           pip install robotframework-requests
 
-      - name: Debug - List all files
-        run: |
-          pwd
-          ls -R
-
       - name: Run Robot Framework Tests
-        run: |
-          cd QaCoders
-          robot -d logs tests/
-        working-directory: ${{ github.workspace }}
+        # Usar 'working-directory' é mais limpo que usar 'cd'
+        run: robot -d logs tests/
+        working-directory: ./QaCoders
 
       - name: Upload Robot Framework Results
+        # Este passo só executa se o anterior não falhar
         uses: actions/upload-artifact@v4
         with:
-          name: robot-results
-          path: QaCoders/logs 
-          if-no-files-found: warn
-          compression-level: 6
-          overwrite: false
-          include-hidden-files: false
+          name: robot-results-api
+          path: QaCoders/logs/
+
+  # --------------------------------------------------------------------
+
+  # Job 2: Fazer o Deploy para o GitHub Pages
+  deploy-to-pages:
+    # Só executa se o job de testes passar
+    needs: run-robot-tests
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      # Descarrega os resultados do job de testes
+      - name: Download test results artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: robot-results-api
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Publica tudo o que está na raiz (o seu index.html e os resultados descarregados)
+          path: '.' 
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
