@@ -52,7 +52,7 @@ CT03: Cadastrar diretoria com acentos
 CT04: Não permitir cadastrar diretoria com nome abaixo do limite minimo (2 caractere) 
     [Tags]     POST    negative    
     [Documentation]  Este teste está com BUG no sistema, pois permite cadastrar diretoria com 1 caractere.
-    ${letra_aleatoria}=               Generate Random String    1    [UPPER]
+    ${letra_aleatoria}=               Generate Random String    1    [LOWER]
     ${body}=                          Create Dictionary         name=${letra_aleatoria}
     ${resp_erro}=                Cadastrar nova diretoria    ${letra_aleatoria}   
     Status Should Be             201                       ${resp_erro}
