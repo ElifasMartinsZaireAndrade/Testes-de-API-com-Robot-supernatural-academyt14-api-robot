@@ -1,6 +1,7 @@
 # Ignora arquivos XML e HTML gerados
 *.xml
 *.html
+!index.html
 
 # Ignora arquivos de cache e diretórios de build
 .DS_Store
